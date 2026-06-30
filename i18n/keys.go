@@ -112,6 +112,7 @@ const (
 	MsgUserWeChatIdEmpty             = "user.wechat_id_empty"
 	MsgUserTelegramIdEmpty           = "user.telegram_id_empty"
 	MsgUserTelegramNotBound          = "user.telegram_not_bound"
+	MsgBindQQRequired                = "bind.qq_required"
 	MsgUserLinuxDOIdEmpty            = "user.linux_do_id_empty"
 	MsgUserQuotaChangeZero           = "user.quota_change_zero"
 )

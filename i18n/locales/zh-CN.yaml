@@ -102,6 +102,7 @@ user.wechat_id_empty: "WeChat id 为空！"
 user.telegram_id_empty: "Telegram id 为空！"
 user.telegram_not_bound: "该 Telegram 账户未绑定"
 user.linux_do_id_empty: "Linux DO id 为空！"
+bind.qq_required: "请先绑定 QQ 账号后再使用 API"
 user.quota_change_zero: "额度变更量不能为0"
 
 # Quota messages

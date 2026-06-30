@@ -149,6 +149,24 @@ export async function getSelfOAuthBindings(): Promise<
 }
 
 /**
+ * Get QQ bind verification code
+ */
+export async function getQqBindCode(): Promise<
+  ApiResponse<{ code: string; expire_seconds: number }>
+> {
+  const res = await api.get('/api/user/self/bind/qq/code')
+  return res.data
+}
+
+/**
+ * Confirm QQ account binding
+ */
+export async function confirmQqBind(): Promise<ApiResponse<{ qq: string }>> {
+  const res = await api.post('/api/user/self/bind/qq')
+  return res.data
+}
+
+/**
  * Unbind a custom OAuth provider for current user
  */
 export async function unbindCustomOAuth(

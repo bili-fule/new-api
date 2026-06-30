@@ -119,6 +119,10 @@ func SetApiRouter(router *gin.Engine) {
 				selfRoute.GET("/checkin", controller.GetCheckinStatus)
 				selfRoute.POST("/checkin", middleware.TurnstileCheck(), controller.DoCheckin)
 
+				// QQ bind
+				selfRoute.GET("/bind/qq/code", middleware.CriticalRateLimit(), controller.GetQqBindCode)
+				selfRoute.POST("/bind/qq", middleware.CriticalRateLimit(), controller.ConfirmQqBind)
+
 				// Custom OAuth bindings
 				selfRoute.GET("/oauth/bindings", controller.GetUserOAuthBindings)
 				selfRoute.DELETE("/oauth/bindings/:provider_id", controller.UnbindCustomOAuth)

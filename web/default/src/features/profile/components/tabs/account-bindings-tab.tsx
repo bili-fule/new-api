@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { useEffect, useMemo, useState, useCallback } from 'react'
-import { Mail, Shield, Send, Link2, Unlink } from 'lucide-react'
+import { Mail, Shield, Send, MessageCircle, Link2, Unlink } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { SiGithub, SiWechat, SiLinux } from 'react-icons/si'
 import { toast } from 'sonner'
@@ -44,6 +44,7 @@ import type { UserProfile, BindingItem } from '../../types'
 import { EmailBindDialog } from '../dialogs/email-bind-dialog'
 import { TelegramBindDialog } from '../dialogs/telegram-bind-dialog'
 import { WeChatBindDialog } from '../dialogs/wechat-bind-dialog'
+import { QqBindDialog } from '../dialogs/qq-bind-dialog'
 
 // ============================================================================
 // Account Bindings Tab Component
@@ -54,7 +55,7 @@ interface AccountBindingsTabProps {
   onUpdate: () => void
 }
 
-type DialogKey = 'email' | 'wechat' | 'telegram'
+type DialogKey = 'email' | 'wechat' | 'telegram' | 'qq'
 
 export function AccountBindingsTab({
   profile,
@@ -239,6 +240,19 @@ export function AccountBindingsTab({
         onBind: () => dialogs.open('telegram'),
       },
       {
+        id: 'qq',
+        label: t('QQ'),
+        icon: MessageCircle,
+        value: (profile as unknown as Record<string, unknown>).qq_id as
+          | string
+          | undefined,
+        isBound: Boolean(
+          (profile as unknown as Record<string, unknown>).qq_id
+        ),
+        isEnabled: true,
+        onBind: () => dialogs.open('qq'),
+      },
+      {
         id: 'linuxdo',
         label: t('LinuxDO'),
         icon: SiLinux as React.ComponentType<{ className?: string }>,
@@ -420,6 +434,15 @@ export function AccountBindingsTab({
           onSuccess={onUpdate}
         />
       )}
+
+      {/* QQ Bind Dialog */}
+      <QqBindDialog
+        open={dialogs.isOpen('qq')}
+        onOpenChange={(open) =>
+          open ? dialogs.open('qq') : dialogs.close('qq')
+        }
+        onSuccess={onUpdate}
+      />
     </>
   )
 }

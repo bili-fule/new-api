@@ -404,6 +404,11 @@ func TokenAuth() func(c *gin.Context) {
 			return
 		}
 
+		if common.QQRequiredEnabled && userCache.QQId == "" {
+			abortWithOpenAiMessage(c, http.StatusForbidden, common.TranslateMessage(c, i18n.MsgBindQQRequired))
+			return
+		}
+
 		userCache.WriteContext(c)
 
 		userGroup := userCache.Group

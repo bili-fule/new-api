@@ -22,6 +22,7 @@ type UserBase struct {
 	Status   int    `json:"status"`
 	Username string `json:"username"`
 	Setting  string `json:"setting"`
+	QQId     string `json:"qq_id"`
 }
 
 func (user *UserBase) WriteContext(c *gin.Context) {
