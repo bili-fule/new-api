@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { useState, useEffect } from 'react'
-import { MessageCircle } from 'lucide-react'
+import { Loader2, MessageCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -139,9 +139,9 @@ export function QqBindDialog({
           className='w-full'
           onClick={handleConfirm}
           disabled={loading || confirming || !code}
-          isLoading={confirming}
         >
-          {t('Confirm binding')}
+          {confirming && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+          {confirming ? t('Binding...') : t('Confirm binding')}
         </Button>
       </div>
     </Dialog>
